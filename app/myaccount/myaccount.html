@@ -4,17 +4,17 @@
 		<p><label for="accountName">User name</label>
 			<input name="accountName" ng-model="account.name" required /></p>
 		<p><label for="accountEmail">E-mail</label>
-			<input name="accountEmail" ng-model="account.email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
-			<span style="color:hsl(0, 100%, 50%)" ng-show="accountForm.accountEmail.$error.pattern">
+			<input name="accountEmail" type="email" ng-model="account.email" required />
+			<span style="color:#ff0000" ng-show="accountForm.accountEmail.$error.email">
 					Введен не корректный e-mail
 				</span>
 		</p>
 		<p><label for="accountPhone">Phone</label>
 			<input id="accountPhone" name="accountPhone" ng-model="account.phone" ng-pattern="/\+\d+/" required />	
-			<span style="color:hsl(0, 100%, 50%)" ng-show="accountForm.accountPhone.$error.pattern">
+			<span style="color:#ff0000" ng-show="accountForm.accountPhone.$error.pattern">
 				Номер телефона может содержать только цифры и знак "+"
 			</span>
 		</p>
 	</fieldset>
-<button type="submit" ng-click="save(account, accountForm)">Сохранить</button>
+<button type="submit" ng-disabled="!accountForm.$valid" ng-click="save(account, accountForm)">Сохранить</button>
 </form>
